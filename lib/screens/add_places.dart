@@ -32,6 +32,7 @@ class _AddPlaceScreen extends ConsumerState<AddPlaceScreen> {
     super.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(

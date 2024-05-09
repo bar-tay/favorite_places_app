@@ -21,7 +21,9 @@ class _ImageInputState extends State<ImageInput> {
     if (pickedImage == null) {
       return;
     }
-    _selectedImage = File(pickedImage.path);
+    setState(() {
+      _selectedImage = File(pickedImage.path);
+    });
   }
 
   @override
@@ -29,13 +31,18 @@ class _ImageInputState extends State<ImageInput> {
     Widget content = TextButton.icon(
       icon: const Icon(Icons.camera),
       label: const Text("Take Picture"),
-      onPressed: () {},
+      onPressed: _takePhoto,
     );
 
     if (_selectedImage != null) {
-      content = Image.file(
-        _selectedImage!,
-        fit: BoxFit.cover,
+      content = GestureDetector(
+        onTap: _takePhoto,
+        child: Image.file(
+          _selectedImage!,
+          fit: BoxFit.cover,
+          width: double.infinity,
+          height: double.infinity,
+        ),
       );
     }
     return Container(
